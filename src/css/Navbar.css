@@ -1,0 +1,65 @@
+.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: #0E1E32;
+    gap: 600px;
+    min-height: 83px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+.links{
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+}
+.navbar-link{
+    font-family: 'Nunito Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 22px;
+    color: white;
+}
+.navbar-dropdown{
+    background-color: #0E1E32;
+    position: sticky;
+    text-align: center;
+    top: 86px;
+    border-top: 5px;
+    width: 90px;
+    z-index: 100;
+    float: right;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    margin-left: auto; 
+    margin-right: 10px;
+}
+.hamburger{
+    display: none;
+}
+@media (max-width: 860px){
+    .navbar{
+        gap: 400px;
+    }
+}
+@media (max-width: 660px){
+    .navbar{
+        gap: 200px;
+    }
+}
+@media (max-width: 600px){
+    .links{
+        display: none;
+    }
+    .hamburger{
+        display: block;
+    }
+}
+@media (max-width: 450px){
+    .navbar{
+        gap: 100px;
+    }
+}

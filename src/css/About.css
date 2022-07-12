@@ -1,0 +1,38 @@
+.about{
+    padding-top: 70px;
+    max-width: 1176px;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    min-height: 800px;
+}
+.about-text{
+    width: auto;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+}
+.about-footer-text{
+    width: auto;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 10;
+}
+@media (max-width: 1200px){
+    .about{
+        width: 800px;
+    }
+}
+
+@media (max-width: 840px){
+    .about{
+        width: 400px;
+    }
+}
+
+@media (max-width: 440px){
+    .about{
+        width: 300px;
+    }
+}

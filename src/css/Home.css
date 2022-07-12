@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@600&family=Nunito+Sans:wght@400;700&family=Poppins&display=swap');
+
+.home{
+    padding-top: 70px;
+    width: 1176px;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    min-height: 800px;
+}
+.loader{
+    display: flex;
+    justify-content: center;
+    margin: auto;
+}
+.section-title{
+    width: 180px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 30px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 27px;
+    border: none;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(28px);
+}
+.content-box{
+    display: grid;
+    grid-template-columns: 400px 400px 400px;
+    margin: 0 auto;
+}
+
+.card-box{
+    width: 360px;
+    height: 520px;
+    display: flex;
+    flex-direction: column;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    border-radius: 3px;
+}
+
+.card-info-box{
+    margin-top: -5px;
+    background-color: rgba(14, 30, 50, 0.65);
+}
+
+.card-text{
+    padding-top: 15px;
+    width: 311.51px;
+    margin: 0 auto;
+    height: 219px;
+    font-size: 18px;
+    line-height: 27px;
+    color: white;
+
+    font-family: 'IBM Plex Serif';
+    font-style: normal;
+    font-weight: 600;
+}
+
+.card-footer{
+    height: 20px;
+    font-size: 13px;
+    line-height: 165%;
+    text-align: center;
+
+    color: white;
+    opacity: 0.7;
+    padding-bottom: 10px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+
+}
+
+.section-title-box{
+    display: flex;
+    align-items: center;
+}
+
+/*SCROLLBAR */
+::-webkit-scrollbar-track
+{
+	background-color: #F1F2F3;
+}
+
+::-webkit-scrollbar
+{
+	width: 10px;
+	background-color: #F1F2F3;
+}
+
+::-webkit-scrollbar-thumb
+{
+	background-color: #0E1E32;
+}
+
+@media (max-width: 1200px){
+    .home{
+        width: 800px;
+    }
+    .content-box{
+        grid-template-columns: 400px 400px;
+        justify-items: center;
+    }   
+}
+
+@media (max-width: 840px){
+    .home{
+        width: 400px;
+    }
+    .content-box{
+        grid-template-columns: 400px;
+    }   
+}
+
+@media (max-width: 440px){
+    
+    .home{
+        width: 300px;
+    }
+    .card-box{
+        transform: scale(0.8);
+    }
+
+    .content-box{
+        grid-template-columns: 300px;
+    }
+}

@@ -1,30 +1,36 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <div class="app">
+    <HomeNavbar/>
+    <router-view :data="data"/>
+    <HomeFooter />
+  </div>
 </template>
+<script lang="ts">
+  import HomeNavbar from '@/components/HomeNavbar.vue'
+  import HomeFooter from '@/components/HomeFooter.vue'
+  import axios, { AxiosResponse } from 'axios'
+  export default {
+    components: {
+      HomeNavbar,
+      HomeFooter
+    },
+    data: function () {
+      return {
+        data: []
+      }
+    },
+    mounted () {
+      axios.get('https://pristine-mount-rainier-47605.herokuapp.com/')
+        .then((response: AxiosResponse) => {
+          this.data = response.data
+        })
+    }
+  }
+</script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
+body {
+  margin: 0;
+  background: #F1F2F3;
 }
 </style>
