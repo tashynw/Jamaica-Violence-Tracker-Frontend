@@ -1,3 +1,4 @@
 [build]
     command="yarn run build"
-    
+[functions."fetch-articles-function"]
+  schedule = "0 */8 * * *"
