@@ -8,5 +8,5 @@ export default async function handler(
   const { data } = await axios.get(`/cron`);
 
   console.dir(data);
-  return res.status(200).json({ message: `CRON Job Successful.` });
+  return res.status(200).json({ message: `CRON Job was successful.` });
 }
