@@ -1,5 +1,5 @@
 [build]
-    command="next build"
+    command="next build && next export"
     publish = "out"
 [functions."fetch-articles-function"]
   schedule = "0 */8 * * *"
