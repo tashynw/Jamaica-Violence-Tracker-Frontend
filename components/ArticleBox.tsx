@@ -1,5 +1,5 @@
 import { Article } from "@/modules/Article";
-import { getArticleSource } from "@/utils/Article";
+import { articleCodes, countryCodes, countryColors } from "@/utils/Article";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import {
   HStack,
@@ -19,7 +19,6 @@ type Props = {
 };
 
 const ArticleBox = ({ article }: Props) => {
-  const authorName = getArticleSource(article?.id);
   return (
     <VStack
       w="100%"
@@ -31,7 +30,9 @@ const ArticleBox = ({ article }: Props) => {
       boxShadow="md"
     >
       <HStack w="100%">
-        <Badge colorScheme="green">Jamaica</Badge>
+        <Badge colorScheme={countryColors[article?.countryCode]}>
+          {countryCodes[article?.countryCode]}
+        </Badge>
         <Spacer />
         <Link href={article?.link} isExternal>
           <ExternalLinkIcon mx="2px" />
@@ -46,9 +47,9 @@ const ArticleBox = ({ article }: Props) => {
       <VStack w="100%" alignItems="flex-start" gap={3}>
         <Text color="gray.600">Author</Text>
         <HStack w="100%">
-          <Avatar size="sm" name={authorName} />
+          <Avatar size="sm" name={articleCodes[article?.key]} />
           <Text size="sm" fontWeight="semibold">
-            {authorName}
+            {articleCodes[article?.key]}
           </Text>
         </HStack>
       </VStack>

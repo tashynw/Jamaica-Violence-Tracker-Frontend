@@ -17,7 +17,7 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
   return (
     <>
       <Head>
-        <title>Jamaica Violence Tracker</title>
+        <title>Caribbean Violence Tracker</title>
         <link
           rel="icon"
           href="https://i.ibb.co/0QYnvHG/jamaica-1-removebg-preview.png"

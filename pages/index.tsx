@@ -2,7 +2,6 @@ import {
   Heading,
   SimpleGrid,
   VStack,
-  Text,
   HStack,
   Spacer,
   Select,
@@ -20,14 +19,17 @@ import ArticleBox from "@/components/ArticleBox";
 import axios from "@/local-api/axios";
 import { SearchIcon } from "@chakra-ui/icons";
 import { Article } from "@/modules/Article";
+import { countryCodes } from "@/utils/Article";
+import { useRouter } from "next/router";
 
 type Props = {
   articles: Article[];
   country: string;
 };
 
-export default function Home({ articles }: Props) {
+export default function Home({ articles, country }: Props) {
   const [filteredArticles, setFilteredArticles] = useState<Article[]>();
+  const router = useRouter();
 
   return (
     <>
@@ -37,15 +39,20 @@ export default function Home({ articles }: Props) {
           alignItems={["flex-start", "flex-start", "center"]}
           flexDir={["column", "column", "row"]}
         >
-          <Heading size="md">Current Jamaican News</Heading>
+          <Heading size="md">Current {countryCodes[country]} News</Heading>
           <Spacer />
           <Box bgColor="white" borderRadius={5}>
-            <Select>
-              <option value="JA">Jamaica</option>
-              <option value="TT">Trinidad and Tobago</option>
-              <option value="GY">Guyana</option>
-              <option value="SV">St. Vincent and the Grenadines</option>
-              <option value="BB">Barbados</option>
+            <Select
+              onChange={(e) => router.push(`/?country=${e.target.value}`)}
+              defaultValue={country}
+            >
+              {Object.keys(countryCodes).map((countryCode) => {
+                return (
+                  <option value={countryCode} key={countryCode}>
+                    {countryCodes[countryCode]}
+                  </option>
+                );
+              })}
             </Select>
           </Box>
         </HStack>
@@ -66,7 +73,7 @@ export default function Home({ articles }: Props) {
             borderLeft="none"
             placeholder="Search for article"
             rounded="md"
-            width={["sm", "sm", "80%"]}
+            width="sm"
             onChange={(e) => {
               const searchInput = e.target.value;
               const filteredResults = articles?.filter((article) =>
@@ -80,7 +87,7 @@ export default function Home({ articles }: Props) {
         </InputGroup>
         {(filteredArticles ?? articles) &&
         (filteredArticles ?? articles).length > 0 ? (
-          <SimpleGrid columns={[1, 2, 3]} gap={5} spacing={5} w="100%">
+          <SimpleGrid columns={[1, 2, 3]} gap={6} spacing={6} w="100%">
             {(filteredArticles ?? articles).map(
               (article: any, index: number) => {
                 return <ArticleBox key={index} article={article} />;
@@ -112,12 +119,24 @@ Home.getLayout = function getLayout(page: ReactElement) {
 };
 
 export async function getServerSideProps(context: any) {
-  const { data } = await axios.get(`/`);
+  let articleData = {};
+  let countryCode = "";
+
+  const selectedCountry = context.query.country;
+  if (!selectedCountry || !(selectedCountry?.toUpperCase() in countryCodes)) {
+    const { data } = await axios.get(`/articles/jm`);
+    articleData = data;
+    countryCode = "JM";
+  } else {
+    const { data } = await axios.get(`/articles/${selectedCountry}`);
+    articleData = data;
+    countryCode = selectedCountry;
+  }
 
   return {
     props: {
-      country: "Jamaica",
-      articles: data,
+      country: countryCode,
+      articles: articleData,
     },
   };
 }

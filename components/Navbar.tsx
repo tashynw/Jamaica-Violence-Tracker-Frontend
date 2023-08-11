@@ -109,7 +109,7 @@ export default function NavigationBar({ children }: { children: any }) {
           alt="product logo"
           src="/images/violence-tracker-logo.png"
         ></Image>
-        <Text>&copy; 2023 Jamaica Violence Tracker</Text>
+        <Text>&copy; 2023 Caribbean Violence Tracker</Text>
       </VStack>
     </>
   );

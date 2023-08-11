@@ -1,5 +1,6 @@
 export type Article = {
   text: string;
   link: string;
-  id: string;
+  key: string;
+  countryCode: string;
 };
