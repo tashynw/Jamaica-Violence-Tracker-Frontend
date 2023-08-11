@@ -16,7 +16,6 @@ export const articleCodes: { [id: string]: string } = {
   SLS: "St. Lucia Star",
   SLT: "St. Lucia Times",
   SLL: "St. Lucia Loop",
-  BBN: "Breaking Belize News",
   CFB: "Channel 5 Belize",
 };
 
