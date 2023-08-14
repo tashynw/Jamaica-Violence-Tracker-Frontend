@@ -17,15 +17,18 @@ export const articleCodes: { [id: string]: string } = {
   SLT: "St. Lucia Times",
   SLL: "St. Lucia Loop",
   CFB: "Channel 5 Belize",
+  TBH: "Tribune 242",
+  BHP: "Bahamas Press",
 };
 
 export const countryCodes: { [id: string]: string } = {
   JM: "Jamaica",
   TT: "Trinidad and Tobago",
   GY: "Guyana",
-  BB: "Barbados",
-  SL: "St. Lucia",
+  BH: "Bahamas",
   BL: "Belize",
+  SL: "St. Lucia",
+  BB: "Barbados",
 };
 
 export const countryColors: { [id: string]: string } = {
@@ -35,4 +38,5 @@ export const countryColors: { [id: string]: string } = {
   BB: "blue",
   SL: "cyan",
   BL: "teal",
+  BH: "cyan",
 };
