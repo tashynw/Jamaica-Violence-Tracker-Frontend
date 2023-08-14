@@ -104,7 +104,8 @@ export default function Home({ articles, country }: Props) {
                 textAlign="center"
               >
                 <AlertIcon />
-                No results were found. Clear the input to reset.
+                No results were found. Clear the input to reset or select
+                another country.
               </Alert>
             </Center>
           </Box>
