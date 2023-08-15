@@ -21,18 +21,45 @@ import { SearchIcon } from "@chakra-ui/icons";
 import { Article } from "@/modules/Article";
 import { countryCodes } from "@/utils/Article";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 type Props = {
   articles: Article[];
   country: string;
+  countrySelected: boolean;
 };
 
-export default function Home({ articles, country }: Props) {
+export default function Home({ articles, country, countrySelected }: Props) {
   const [filteredArticles, setFilteredArticles] = useState<Article[]>();
   const router = useRouter();
 
   return (
     <>
+      {countrySelected && (
+        <Head>
+          <meta
+            property="og:title"
+            key="og:title"
+            content={`Caribbean Violence Tracker - Monitoring Crime in ${countryCodes[country]}`}
+          />
+          <meta
+            property="og:description"
+            key="og:description"
+            content={`Stay informed about violent crimes and news in ${countryCodes[country]} with Caribbean Violence Tracker. Get the latest news articles and updates on crime trends.`}
+          />
+
+          <meta
+            property="og:url"
+            key="og:url"
+            content={`https://caribbean-violence-tracker.vercel.app/?country=${country}`}
+          />
+          <meta
+            name="description"
+            key="description"
+            content={`Stay informed about violent crimes and news in ${countryCodes[country]} with Caribbean Violence Tracker. Get the latest news articles and updates on crime trends, sourced from reputable news outlets.`}
+          />
+        </Head>
+      )}
       <VStack w="100%" alignItems="flex-start" gap={10}>
         <HStack
           w="100%"
@@ -122,12 +149,14 @@ Home.getLayout = function getLayout(page: ReactElement) {
 export async function getServerSideProps(context: any) {
   let articleData = {};
   let countryCode = "";
+  let countrySelected = true;
 
   const selectedCountry = context.query.country;
   if (!selectedCountry || !(selectedCountry?.toUpperCase() in countryCodes)) {
     const { data } = await axios.get(`/articles/jm`);
     articleData = data;
     countryCode = "JM";
+    countrySelected = false;
   } else {
     const { data } = await axios.get(`/articles/${selectedCountry}`);
     articleData = data;
@@ -138,6 +167,7 @@ export async function getServerSideProps(context: any) {
     props: {
       country: countryCode,
       articles: articleData,
+      countrySelected,
     },
   };
 }
