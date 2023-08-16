@@ -19,6 +19,7 @@ export const articleCodes: { [id: string]: string } = {
   CFB: "Channel 5 Belize",
   TBH: "Tribune 242",
   BHP: "Bahamas Press",
+  CVM: "CVM Television",
 };
 
 export const countryCodes: { [id: string]: string } = {
