@@ -70,7 +70,10 @@ export default function Home({ articles, country, countrySelected }: Props) {
           <Spacer />
           <Box bgColor="white" borderRadius={5}>
             <Select
-              onChange={(e) => router.push(`/?country=${e.target.value}`)}
+              onChange={(e) => {
+                setFilteredArticles(articles);
+                router.push(`/?country=${e.target.value}`);
+              }}
               defaultValue={country}
             >
               {Object.keys(countryCodes).map((countryCode) => {
