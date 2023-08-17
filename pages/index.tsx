@@ -13,7 +13,7 @@ import {
   Alert,
   AlertIcon,
 } from "@chakra-ui/react";
-import { ReactElement, useState } from "react";
+import { ReactElement, useEffect, useState } from "react";
 import NavigationBar from "@/components/Navbar";
 import ArticleBox from "@/components/ArticleBox";
 import axios from "@/local-api/axios";
@@ -30,8 +30,14 @@ type Props = {
 };
 
 export default function Home({ articles, country, countrySelected }: Props) {
+  const [searchInput, setSearchInput] = useState<string>("");
   const [filteredArticles, setFilteredArticles] = useState<Article[]>();
   const router = useRouter();
+
+  useEffect(() => {
+    setFilteredArticles(undefined);
+    setSearchInput("");
+  }, [country]);
 
   return (
     <>
@@ -70,10 +76,7 @@ export default function Home({ articles, country, countrySelected }: Props) {
           <Spacer />
           <Box bgColor="white" borderRadius={5}>
             <Select
-              onChange={(e) => {
-                setFilteredArticles(articles);
-                router.push(`/?country=${e.target.value}`);
-              }}
+              onChange={(e) => router.push(`/?country=${e.target.value}`)}
               defaultValue={country}
             >
               {Object.keys(countryCodes).map((countryCode) => {
@@ -106,6 +109,8 @@ export default function Home({ articles, country, countrySelected }: Props) {
             width="sm"
             onChange={(e) => {
               const searchInput = e.target.value;
+              setSearchInput(searchInput);
+
               const filteredResults = articles?.filter((article) =>
                 article?.text
                   ?.toLowerCase()
@@ -113,6 +118,7 @@ export default function Home({ articles, country, countrySelected }: Props) {
               );
               setFilteredArticles(filteredResults);
             }}
+            value={searchInput}
           />
         </InputGroup>
         {(filteredArticles ?? articles) &&
